@@ -1,8 +1,11 @@
-apply plugin: 'com.android.application'
+plugins {
+    id 'com.android.application'
+}
 
 android {
-    compileSdkVersion 34
-    namespace "org.blockinger2.game"
+    namespace 'org.blockinger2.game'
+    compileSdk 36
+
     defaultConfig {
         applicationId "org.blockinger2.game"
         minSdkVersion 16
@@ -14,29 +17,30 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
-   compileOptions {
+    compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
-   }
+    }
 
+    buildFeatures {
+        buildConfig true
+    }
 }
 
 tasks.register('generateCapnpCode', Exec) {
     workingDir = file('src/main/java/org/blockinger2/game/database/serialization')
-    // We run sh in order to resolve the wildcard
     commandLine 'sh', '-c', 'capnp compile -o java *.capnp'
 }
-// Run Cap'n Proto compilation before the java compilation
-tasks.named('preBuild').configure {
-    dependsOn tasks.named('generateCapnpCode')
+
+tasks.named('preBuild') {
+    dependsOn 'generateCapnpCode'
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'org.capnproto:runtime:0.1.16'
 }
