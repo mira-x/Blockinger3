@@ -1,9 +1,14 @@
-Blockinger 2
+Blockinger 3
 ============
 
-Free classic Tetris® clone for Android, originally developed by Simon Willeke and currently maintained by Tasio Leiva.
+Free classic Tetris® clone for Android.
 
-Official hard fork from the now unmaintained [vocollapse's Blockinger.](https://github.com/vocollapse/Blockinger)
+This is a fork of [Blockinger2 by Tasio Leiva](https://github.com/yanshoutong/Blockinger2), which is a fork of [Blockinger by Simon Willeke](https://github.com/vocollapse/Blockinger).
+
+## Networking
+New in this fork: Networking!
+
+Blockinger3 players on the same WiFi network will automatically send their highscore list to you and vice versa, so you can compete against friends, like on a real arcade machine! This happens every two minutes.
 
 ## Scoring
 
@@ -67,6 +72,9 @@ The next piece will be independently generated at random.
 ## Resumability
 
 An interrupted game is resumable as long as the "Exit" menu entry from the main menu was not pressed.
+
+## Building
+To build this app, you need Android Studio and cap'n proto and its Java plugin. In the Arch Linux package repository, they are packaged as `capnproto` and `capnproto-java`.
 
 ## Licenses
 
